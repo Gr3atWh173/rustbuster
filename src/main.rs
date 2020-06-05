@@ -9,6 +9,7 @@ use std::{sync::mpsc::channel, thread, time::SystemTime};
 
 mod args;
 mod banner;
+mod common_utils;
 mod dirbuster;
 mod dnsbuster;
 mod fuzzbuster;

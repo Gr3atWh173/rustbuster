@@ -1,12 +1,12 @@
-use std::{fs, fs::File, io::Write, path::Path, str};
+use std::{fs::File, io::Write, path::Path, str};
 
 use super::result_processor::SingleVhostScanResult;
+use crate::common_utils::file_to_string;
 
 pub fn build_vhosts(wordlist_path: &str, url: &str) -> Vec<hyper::Uri> {
     debug!("building urls");
     let mut urls: Vec<hyper::Uri> = Vec::new();
-    let wordlist =
-        fs::read_to_string(wordlist_path).expect("Something went wrong reading the wordlist file");
+    let wordlist = file_to_string(wordlist_path);
     let urls_iter = wordlist
         .lines()
         .filter(|word| !word.starts_with('#') && !word.starts_with(' '))
