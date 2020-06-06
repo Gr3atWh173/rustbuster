@@ -34,6 +34,7 @@ fn make_request_future(
         url: url.to_string(),
         method: Method::GET.to_string(),
         status: StatusCode::default().to_string(),
+        content_length: "0".to_string(),
         error: None,
         extra: None,
     };
@@ -56,6 +57,11 @@ fn make_request_future(
         .request(request)
         .and_then(move |res| {
             let status = res.status();
+            match res.headers().get("content-length") {
+                // TODO: handle error thrown by to_str
+                Some(value) => target.content_length = value.to_str().unwrap().to_string(),
+                None => (),
+            };
             target.status = status.to_string();
             if status.is_redirection() {
                 target.extra = Some(

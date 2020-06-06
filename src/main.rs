@@ -229,18 +229,20 @@ fn main() {
 
                     if common_args.no_progress_bar {
                         println!(
-                            "{}\t{}{}{}{}",
+                            "{}\t{}\t{}{}{}{}",
                             msg.method,
                             msg.status,
+                            msg.content_length,
                             "\t".repeat(n_tabs),
                             msg.url,
                             extra
                         );
                     } else {
                         bar.println(format!(
-                            "{}\t{}{}{}{}",
+                            "{}\t{}\t{}{}{}{}",
                             msg.method,
                             msg.status,
+                            msg.content_length,
                             "\t".repeat(n_tabs),
                             msg.url,
                             extra

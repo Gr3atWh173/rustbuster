@@ -5,6 +5,7 @@ pub struct SingleDirScanResult {
     pub url: String,
     pub method: String,
     pub status: String,
+	pub content_length: String,
     pub error: Option<String>,
     pub extra: Option<String>,
 }
